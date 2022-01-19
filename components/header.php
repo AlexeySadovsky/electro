@@ -1,3 +1,4 @@
+<?php ob_start()?>
 <!-- HEADER index.html -->
 <header>
     <!-- TOP HEADER -->
@@ -123,3 +124,35 @@
     <!-- /MAIN HEADER -->
 </header>
 <!-- /HEADER -->
+
+<?php
+    $navigations = [
+            "Hot Deals" => '/',
+            "Categories" => "#",
+            "Laptops" => "/product.php",
+            "Smartphones" => "#",
+            "Cameras" => "#",
+            "Accessories" => "#",
+    ];
+?>
+<!-- NAVIGATION -->
+<nav id="navigation">
+    <!-- container -->
+    <div class="container">
+        <!-- responsive-nav -->
+        <div id="responsive-nav">
+            <!-- NAV -->
+            <ul class="main-nav nav navbar-nav">
+                <?php foreach($navigations as $navLink => $object): ?>
+                <li <?php if ($_SERVER["REQUEST_URI"] === $object): ?>class="active"<?php endif; ?>>
+                    <a href= "<?= $object; ?>"><?= $navLink; ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+            <!-- /NAV -->
+        </div>
+        <!-- /responsive-nav -->
+    </div>
+    <!-- /container -->
+</nav>
+<!-- /NAVIGATION -->
+
