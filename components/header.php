@@ -1,4 +1,16 @@
 <?php ob_start()?>
+
+<?php
+$mysqli = new mysqli("127.0.0.1:3306", "root", "", "electro");
+$sqls = mysqli_query($mysqli,'SELECT * FROM `category`');
+$mass = array();
+while($rws = mysqli_fetch_assoc($sqls)){
+    $mass[] = $rws['name'];
+}
+
+
+?>
+
 <!-- HEADER index.html -->
 <header>
     <!-- TOP HEADER -->
@@ -39,8 +51,9 @@
                         <form>
                             <select class="input-select">
                                 <option value="0">All Categories</option>
-                                <option value="1">Category 01</option>
-                                <option value="1">Category 02</option>
+                                <?php foreach($mass as $key => $value): ?>
+                                    <option value= "<?= $key; ?>"><?=  $value; ?></option>
+                                <?php endforeach; ?>
                             </select>
                             <input class="input" placeholder="Search here">
                             <button class="search-btn">Search</button>
